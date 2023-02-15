@@ -15,7 +15,7 @@ public class Application {
 
 	@GetMapping("/")
 	public String apiRoot(){
-		return "Hello World!";
+		return "Hello World!!";
 	}
 
 }
