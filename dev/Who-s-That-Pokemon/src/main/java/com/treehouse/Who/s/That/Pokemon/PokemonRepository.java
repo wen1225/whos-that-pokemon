@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 @Repository
 public interface PokemonRepository extends MongoRepository<Pokemon, ObjectId> {
+    //Query to find pokemon based on their pokedex number
     Optional<Pokemon> findPokemonById(int id);
 
 
