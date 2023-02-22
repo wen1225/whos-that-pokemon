@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pokemon {
-   
+   //Represents a Pokemon Object in the Database
     @Id   
     private ObjectId obId;
     private int id;
     private String name;
-    private String type;
+    private String Types;
     private String Region;
     private String Entry;
 
