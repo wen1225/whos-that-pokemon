@@ -23,8 +23,23 @@ public class PokemonController {
         return new ResponseEntity<List<Pokemon>>(pokemonService.allPokemon(), HttpStatus.OK);
     }
 
+    @GetMapping("/random")
+    public ResponseEntity<Optional<Pokemon>> getSingleRandomPokemon(){
+        return new ResponseEntity<Optional<Pokemon>>(pokemonService.singleRandomPokemon(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Pokemon>> getSinglePokemon(@PathVariable ObjectId id){
-        return new ResponseEntity<Optional<Pokemon>>(pokemonService.singlePokemon(id), HttpStatus.OK);
+    public ResponseEntity<Optional<Pokemon>> getEntryById(@PathVariable int id){
+        return new ResponseEntity<Optional<Pokemon>>(pokemonService.pokedexEntry(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/region/{id}")
+    public ResponseEntity<Optional<Pokemon>> getRegionById(@PathVariable int id){
+        return new ResponseEntity<Optional<Pokemon>>(pokemonService.region(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/types/{id}")
+    public ResponseEntity<Optional<Pokemon>> getTypesById(@PathVariable int id){
+        return new ResponseEntity<Optional<Pokemon>>(pokemonService.types(id), HttpStatus.OK);
     }
 }
