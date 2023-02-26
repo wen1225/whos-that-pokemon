@@ -1,8 +1,13 @@
 Team TreeHouse
+
 Team Lead: Abhinav Selvaraj
+
 Members: Breanna Chi, Ken Ho, Prabhleen Bagri 
+
 Project: Who’s That Pokemon
+
 Github Repository: https://github.com/wen1225/whos-that-pokemon
+
 Technologies (Finalized) 
     Frontend: HTML, CSS, React
     Backend: Java, Spring Boot, MongoDB (database) 
