@@ -1,0 +1,20 @@
+Application Users:
+
+Single player
+Start:
+Player is loaded into a single player game room
+During Game:
+Player will have to guess Pokemon cry from the video games
+Get 4 optional hints - each one deducts points
+Longer the player takes to guess, will deduct points from possible points
+End:
+Final Score showcased
+Multiplayer
+Start:
+Players are loaded into a multiplayer game room
+During Game:
+Players will have to guess Pokemon cry from video games
+Get 4 hints optional hints - each one deduct points
+Longer the player takes to guess, will deduct points from possible points
+End:
+Final standing of all players showcased
