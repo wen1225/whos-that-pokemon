@@ -1,1 +1,3 @@
+No longterm issues, current status is just further developing frontend.
 
+some JDK version is known to conflict with SpringBoot compiling at runtime (situational blocker)
