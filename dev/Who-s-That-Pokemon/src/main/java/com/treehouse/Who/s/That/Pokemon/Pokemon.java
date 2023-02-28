@@ -23,5 +23,5 @@ public class Pokemon {
     private String Region;
     private String Entry;
 
-    private Binary Cry;
+    private String Cry;
 }
