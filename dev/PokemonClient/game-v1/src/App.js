@@ -11,6 +11,7 @@ function App() {
   <GetRandomPokemon />
  );
   
+
 };
 
 export default App;
