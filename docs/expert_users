@@ -1,24 +1,35 @@
 How to build game from scratch for expert users:
+Updated - 3/5/2023
 
 Prerequisite downloads:
-  Download MongoDB Compass via https://www.mongodb.com/try/download/shell 
-  Have working IDE with most recent Java Version 
+   
+  Have working IDE with most recent Java Version (we recommend VSCode
   Have Node.js installed
   Have SpringBoot installed https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack 
-  Clone this repo 
-  
-  Have MongoDB Compass open
-  Run Application.java
   Install CORS extention to GoogleChrome https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en 
+  Toggle the CORS extension on (will be off by defualt)
+
+
+To run application:
   
-  To run react app and view frontend:
-    Go to /PokemonClient/game-v1 in the project directory 
-    run 'npm install' then 'npm start' 
-    
-    Press button to see pokemon data displayed and backend connection demonstrated
-    This is current status of web game
-    
-    2/26 Status (updates since last week) --> see pdf for status
+  Create a folder anywhere on your machine and name it appropriately
+  Open the folder in any IDE (We recommend VScode)
+  Open a terminal in the IDE and clone the repo: git clone https://github.com/wen1225/whos-that-pokemon.git
+  Note: PokemonClient is the front end and Who'sThatPokemon is the backend
+  Under Who'sThatPokemon, navigate to Application.java. Right click it and run. If successfull, localhost:8080 should display "Hello World!!!"
+  
+  In the terminal, navigate to /PokemonClient/game-v1 in the project directory 
+  If first time running the project, will need to run the following commands:
+  npm install
+  npm install use-sound
+  npm install howler
+  
+  Run npm start
+  If successful, localhost:3000 should pop up with the application running
+  
+  Press button to see pokemon data displayed and backend connection demonstrated
+  This is current status of web game
+   
     
     
     
