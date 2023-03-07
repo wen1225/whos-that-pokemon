@@ -1,5 +1,5 @@
 import './App.css';
-import api from './api/axiosConfig';
+import api from '../api/axiosConfig';
 import React, {useState, useEffect, Component} from 'react';
 import useSound from 'use-sound';
 import { Howl } from 'howler';
