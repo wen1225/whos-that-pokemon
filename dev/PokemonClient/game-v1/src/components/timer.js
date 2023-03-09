@@ -1,33 +1,40 @@
-import {useEffect, useRef, useState} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Button from '@mui/material/Button';
 
-function Timer({seconds}){
-    /*const [time, setTime] = useState(seconds);
+function Timer() {
+    const alloted_time = 10;
+    const [remainingTime, setRemainingTime] = useState(alloted_time);
     const [isActive, setIsActive] = useState(false);
-    
-    
-    function toggle() {
+
+    function startTimer() {
         setIsActive(true);
-        console.log(!isActive);
+    }
+
+    function resetTimer() {
+        setIsActive(false);
+        setRemainingTime(alloted_time);
     }
 
     useEffect(() => {
-        let timer = null;
-        if (isActive && seconds >= 0) {
-            timer = setInterval(() => {
-            setTime((seconds) => seconds - 1);
+        let interval = null;
+        if (isActive && remainingTime > 0) {
+            interval = setInterval(() => {
+                setRemainingTime(remainingTime - 1);
             }, 1000);
-            console.log(time);
+        } else if (remainingTime === 0) {
+            clearInterval(interval);
+            setIsActive(false);
         }
-        return () => clearInterval(timer);
-      }, []);
+        return () => clearInterval(interval);
+    }, [remainingTime, isActive]);
 
-    return (
-        <div>
-            <Button variant="contained" onClick={toggle}>Start</Button>
-            <div>Time: {time}</div>
-        </div>
-    )*/
+
+    return (<div>
+        <Button variant="contained" onClick={startTimer}>Start</Button>
+        <Button variant="contained" onClick={resetTimer}>Reset</Button>
+        <div>Time remaining: {remainingTime}</div>
+    </div>
+    )
 }
 
 export default Timer;

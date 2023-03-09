@@ -1,11 +1,13 @@
 import * as React from 'react';
+import GetRandomPokemon from '../../components/getRandomPokemon';
 import Timer from '../../components/timer';
 
 function SinglePlayerPage() {
     return (
     <div>
         <h1>Single Player Mode</h1>
-        <Timer seconds={10}/>
+        <GetRandomPokemon />
+        <Timer />
     </div>
     );
 }
