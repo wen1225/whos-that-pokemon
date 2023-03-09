@@ -24,4 +24,5 @@ public class Pokemon {
     private String Entry;
 
     private String Cry;
+    private String Sprite;
 }

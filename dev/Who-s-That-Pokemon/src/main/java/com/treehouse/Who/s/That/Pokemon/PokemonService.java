@@ -27,7 +27,7 @@ public class PokemonService {
     //Return a random Pokemon from the Database
     public Optional<Pokemon> singleRandomPokemon(){
         Random rand = new Random();
-        int id = rand.nextInt(9 - 1 + 1) + 1;
+        int id = rand.nextInt(101 - 1 + 1) + 1;
         return pokemonRepository.findPokemonById(id);
     }
 
