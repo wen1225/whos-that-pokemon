@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Timer from '../../components/timer';
 
-function SinglePlayerPage() {
+function SinglePlayer() {
     return (
     <div>
         <h1>Who's That Pokemon Single Player Mode</h1>
@@ -10,4 +10,4 @@ function SinglePlayerPage() {
     );
 }
 
-export default SinglePlayerPage;
+export default SinglePlayer;
