@@ -1,0 +1,4 @@
+mongodb CRUD operations for database
+
+db.pokemon.updateMany({}, [{$set:{Sprite: {$concat:["https://img.pokemondb.net/sprites/x-y/normal/",{$toLower: "$name"},".png"]}}}])
+db.pokemon.updateMany({}, [{$set:{Cry: {$concat:["https://play.pokemonshowdown.com/audio/cries/",{$toLower: "$name"},".mp3"]}}}])
