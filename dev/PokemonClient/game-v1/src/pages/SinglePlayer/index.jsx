@@ -4,7 +4,7 @@ import Timer from '../../components/timer';
 function SinglePlayerPage() {
     return (
     <div>
-        <h1>Single Player Mode</h1>
+        <h1>Who's That Pokemon Single Player Mode</h1>
         <Timer seconds={10}/>
     </div>
     );
