@@ -1,13 +1,19 @@
 import './App.css';
-import Axios from "axios";
+import { Route, Routes, Link } from 'react-router-dom';
+import SinglePlayer from './pages/SinglePlayer';
 
-import api from './api/axiosConfig';
-import React, {useState, useEffect} from 'react';
-/*import GetRandomPokemon from './getRandomPokemon';*/
-import SinglePlayerPage from './pages/SinglePlayer';
 function App() {
  return(
-    <SinglePlayerPage />
+   <>
+      <nav>
+         <ul>
+            <li><Link to="/pages">SinglePlayer</Link></li>
+         </ul>
+      </nav>
+      <Routes>
+         <Route path="/" element={<SinglePlayer />} />
+      </Routes>
+   </>
  );
 };
 

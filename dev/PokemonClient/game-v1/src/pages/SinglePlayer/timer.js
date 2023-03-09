@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 
 function Timer() {
@@ -29,11 +29,12 @@ function Timer() {
     }, [remainingTime, isActive]);
 
 
-    return (<div>
+    return (
+        <>
         <Button variant="contained" onClick={startTimer}>Start</Button>
         <Button variant="contained" onClick={resetTimer}>Reset</Button>
-        <div>Time remaining: {remainingTime}</div>
-    </div>
+        <p>Time remaining: {remainingTime}</p>
+        </>
     )
 }
 

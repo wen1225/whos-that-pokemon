@@ -1,14 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom/client';
+import Axios from "axios";
+import api from './api/axiosConfig';
 import './index.css';
 import App from './App';
-import reportWebVitals from './components/reportWebVitals';
+import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

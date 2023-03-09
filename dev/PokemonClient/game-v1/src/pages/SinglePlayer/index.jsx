@@ -1,10 +1,12 @@
 import * as React from 'react';
-import GetRandomPokemon from '../../components/getRandomPokemon';
-import Timer from '../../components/timer';
+import styles from "./styles.module.css";
+import GetRandomPokemon from './getRandomPokemon';
+import Timer from './timer.js';
+import Button from '@mui/material/Button';
 
-function SinglePlayerPage() {
+function SinglePlayer() {
     return (
-    <div>
+    <div className={styles.container}>
         <h1>Single Player Mode</h1>
         <GetRandomPokemon />
         <Timer />
@@ -12,4 +14,4 @@ function SinglePlayerPage() {
     );
 }
 
-export default SinglePlayerPage;
+export default SinglePlayer;
