@@ -11,11 +11,11 @@ function App() {
    
  return(
    <div>
-    <SinglePlayer />
+    {/* <SinglePlayer /> */}
     <GetRandomPokemon />
-    <GetOtherPokemon />
-    <GetOtherPokemon />
-    <GameOver />
+    {/* <GetOtherPokemon />
+    <GetOtherPokemon /> */}
+    {/* <GameOver /> */}
    </div>
    
  );

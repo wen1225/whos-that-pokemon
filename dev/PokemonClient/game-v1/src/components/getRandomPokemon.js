@@ -3,6 +3,7 @@ import api from '../api/axiosConfig';
 import React, {useState, useEffect, Component} from 'react';
 import useSound from 'use-sound';
 import { Howl } from 'howler';
+import './getRandomPokemon.css';
 
 //Gets the random "correct" Pokemon for the round. Plays sound
 
@@ -37,28 +38,19 @@ function GetRandomPokemon(){
       
         
       return(
+        <div className='center'>
         
-        <d1>
-            
-                Test <button onClick={() => {
+          <div className='box'>
+            <button  onClick={() => {
                   
-                  getPokemonComponent();
+              getPokemonComponent();
                   
-                  }}>get random pokemon</button>
-                  
+              }}>get random pokemon</button>
               
-                <h1>{pokemon.name} </h1>
-                {/* <h1>{pokemon.entry}</h1>
-                <h1>{pokemon.types}</h1>
-                <h1>{pokemon.region}</h1>
-                <h1>{pokemon.cry}</h1>
-                <h1>{pokemon.sprite}</h1> */}
-                <img src = {pokemon.sprite} />
-                <h1></h1>
-                
-                
-                
-        </d1>
+            <img  className='pokemon-bg' src = {pokemon.sprite} />
+            <h1>{pokemon.name} </h1>
+          </div>
+        </div>
         
         
       );

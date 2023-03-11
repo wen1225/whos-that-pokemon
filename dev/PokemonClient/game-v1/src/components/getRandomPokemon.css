@@ -1,0 +1,27 @@
+.box{
+    top: 335px;
+    left: 685px;
+    width: 550px;
+    height: 70px;
+    
+    background: #EFEFEF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 15px #00000029;
+    opacity: 1;
+}
+
+
+.pokemon-bg{
+    background:#EFEFEF;
+    
+}
+
+.test{
+    color:blue;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:50vh;  
+}
