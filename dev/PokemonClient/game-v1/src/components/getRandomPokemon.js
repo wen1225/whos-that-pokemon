@@ -38,20 +38,35 @@ function GetRandomPokemon(){
       
         
       return(
-        <div className='center'>
+        <div> 
         
-          <div className='box'>
-            <button  onClick={() => {
-                  
-              getPokemonComponent();
-                  
-              }}>get random pokemon</button>
-              
-            <img  className='pokemon-bg' src = {pokemon.sprite} />
-            <h1>{pokemon.name} </h1>
-          </div>
+         
+            <div className='box'>
+              <button  onClick={() => {getPokemonComponent();}}>get random pokemon</button>
+              <img  className='pokemon-bg' src = {pokemon.sprite} />
+            </div>
+           
+        
+          <section>
+            <div className = "cards">
+              <div className = "card">
+                <h1>{pokemon.name}</h1>
+              </div>
+              <div className = "card">
+                <h1>{pokemon.types}</h1>
+              </div>
+                <div className = "card" >
+                <h1>{pokemon.region}</h1>
+              </div>
+              <div className = "card">
+                <h1>{pokemon.entry}</h1>
+              </div>
+            </div>
+          </section>
+         
+        
         </div>
-        
+      
         
       );
 
