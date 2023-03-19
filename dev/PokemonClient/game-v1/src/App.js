@@ -7,12 +7,14 @@ import GetRandomPokemon from './components/getRandomPokemon';
 import SinglePlayer from './pages/SinglePlayer';
 import GetOtherPokemon from './components/getOtherPokemon';
 import GameOver from './pages/GameOver';
+import HomePage from './components/homePage';
 function App() {
    
  return(
    <div>
     {/* <SinglePlayer /> */}
-    <GetRandomPokemon />
+    {/* <GetRandomPokemon />*/}
+    <HomePage />
     {/* <GetRandomPokemon /> */}
     {/* <GetOtherPokemon />
     <GetOtherPokemon /> */}
