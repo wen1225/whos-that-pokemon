@@ -3,7 +3,11 @@
   padding: 0;
   text-decoration: none;
   background:#EAEAEA;
-  /* font-size: 10px; */
+  font-family: myFirstFont;
   
 
+}
+@font-face {
+  font-family: myFirstFont;
+  src: url(PokemonGb-RAeo.ttf);
 }

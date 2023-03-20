@@ -11,7 +11,7 @@ function App() {
    
  return(
    <div>
-    <SinglePlayer />
+    {/* <SinglePlayer /> */}
     <GetRandomPokemon />
     {/* <GetRandomPokemon /> */}
     {/* <GetOtherPokemon />
