@@ -5,15 +5,18 @@ import Box from '@mui/material/Box';
 import {Typography } from '@mui/material'
 
 import Timer from '../../components/timer';
+import GetRandomPokemon from '../../components/getRandomPokemon';
+import GetOtherPokemon from '../../components/getOtherPokemon';
 
 
 function SinglePlayer() {
     return (
     <div>
         <React.Fragment>
-            <Box position='absolute' top='8%' bottom='10%' left='10%' sx={{m: 0, p: 0, bgcolor: '#DCDBE7', height: '72%', width: '80%', boxShadow: 10}} />
-            <Typography variant='h1' position='absolute' top='8%' bottom='10%' left='10%' sx={{m: 0, p: 0, bgcolor: '#DCDBE7', height: '72%', width: '80%'}}>00:04:31</Typography>
-            <Timer />
+            <Box position='absolute' top='5%' bottom='10%' left='5%' sx={{m: 0, p: 0, bgcolor: '#DCDBE7', height: '90%', width: '90%', boxShadow: 10}} />
+            {/* <Typography variant='h1' position='absolute' top='8%' bottom='10%' left='10%' sx={{m: 0, p: 0, bgcolor: '#DCDBE7', height: '72%', width: '80%'}}>00:04:31</Typography> */}
+            {/* <Timer /> */}
+            <GetRandomPokemon />
         </React.Fragment>
     </div>
     );

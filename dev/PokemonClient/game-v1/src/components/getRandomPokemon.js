@@ -11,6 +11,9 @@ function GetRandomPokemon() {
   const [pokemon, setPokemon] = useState([]);
   const [src, setsrc] = useState([]);
 
+
+ 
+
   //START: Handles ability to click a hint button once
   const [showIdContent, setShowIdContent] = useState(false);
   const [showRegionContent, setShowRegionContent] = useState(false);
@@ -50,6 +53,20 @@ function GetRandomPokemon() {
   };
   //END:
 
+  const resetComponent = () => {
+    setShowIdContent(false);
+    setShowRegionContent(false)
+    setShowTypeContent(false)
+    setShowEntryContent(false);
+
+    setIsIdClickable(true);
+    setIsRegionClickable(true);
+    setIsTypeClickable(true);
+    setIsEntryClickable(true);
+  };
+
+
+
 
   //Plays Pokemon's cry
   const play = (src) => {
@@ -76,17 +93,23 @@ function GetRandomPokemon() {
       });
   };
 
-
+ 
 
 
 
   return (
     <div>
 
+      {/* Button for resetting hints and going to the next round */}
+      <button className = 'button' onClick={() => { 
+        getPokemonComponent(); 
+        resetComponent();
+        }}> <h1 className='font'>Next Round</h1>
+      </button>
+      
       {/* Box where the Pokemon Appear */}
       <div className='box'>
-        <button onClick={() => { getPokemonComponent(); }}>get random pokemon</button>
-        <img className='pokemon-bg' src={pokemon.sprite} />
+        <img className='pokemon-bg' src={pokemon.sprite} onClick = {() =>{console.log("test"); }} />
       </div>
 
 
