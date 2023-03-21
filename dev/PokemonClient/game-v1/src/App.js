@@ -12,10 +12,7 @@ function App() {
  return(
    <div>
     <SinglePlayer />
-    <GetRandomPokemon />
-    {/* <GetRandomPokemon /> */}
-    {/* <GetOtherPokemon />
-    <GetOtherPokemon /> */}
+   
     {/* <GameOver /> */}
    </div>
    
