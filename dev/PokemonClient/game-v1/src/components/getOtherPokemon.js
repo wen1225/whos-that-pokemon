@@ -1,10 +1,11 @@
 //import './App.css';
 import api from '../api/axiosConfig';
 import React, {useState, useEffect, Component} from 'react';
+import  './getRandomPokemon.css';
 
 //Gets the other "incorrect" Pokemon to present options. Does not play sound
 
-function GetOtherPokemon(){
+export function GetOtherPokemon(){
     const [pokemon, setPokemon] = useState([]);
     const [src, setsrc] = useState([]);
 
@@ -19,37 +20,13 @@ function GetOtherPokemon(){
           .catch((err) => {
             console.log(err);
           });
-      };
+         
+        
+    };
+    
+    getPokemonComponent();
 
-      
-      
-        
-      return(
-        
-        <d1>
-            
-                Test <button onClick={() => {
-                  
-                  getPokemonComponent();
-                  
-                  }}>get random pokemon</button>
-                  
-              
-                <h1>{pokemon.name} </h1>
-                {/* <h1>{pokemon.entry}</h1>
-                <h1>{pokemon.types}</h1>
-                <h1>{pokemon.region}</h1>
-                <h1>{pokemon.cry}</h1>
-                <h1>{pokemon.sprite}</h1> */}
-                <img src = {pokemon.sprite} />
-                <h1></h1>
-                
-                
-                
-        </d1>
-        
-        
-      );
+    return(<div>{<img className='pokemon-bg' src={pokemon.sprite} />}</div>);
 
 };
 export default GetOtherPokemon;

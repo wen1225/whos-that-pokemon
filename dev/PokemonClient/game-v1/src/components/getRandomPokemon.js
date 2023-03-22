@@ -5,11 +5,33 @@ import useSound from 'use-sound';
 import { Howl } from 'howler';
 import './getRandomPokemon.css';
 
+
+
 //Gets the random "correct" Pokemon for the round. Plays sound
 
 function GetRandomPokemon() {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setCorrectPokemon] = useState([]);
+  const [pR1, setR1Pokemon] = useState([]);
+  const [pR2, setR2Pokemon] = useState([]);
+  const [pR3, setR3Pokemon] = useState([]);
+  const [reload, setReload] = useState(false);
+  const [randomArr, setRandomArr] = useState(true);
+
+  const images = [];
+  
+ 
+  images.push(pokemon);
+  images.push(pR1);
+  images.push(pR2);
+  images.push(pR3);
+
+  
+  images.sort(()=>Math.random() - 0.5); //Randomize position of image in the array
+
+  
+  
   const [src, setsrc] = useState([]);
+  
 
 
  
@@ -53,7 +75,7 @@ function GetRandomPokemon() {
   };
   //END:
 
-  const resetComponent = () => {
+  const resetHintsComponent = () => {
     setShowIdContent(false);
     setShowRegionContent(false)
     setShowTypeContent(false)
@@ -63,10 +85,9 @@ function GetRandomPokemon() {
     setIsRegionClickable(true);
     setIsTypeClickable(true);
     setIsEntryClickable(true);
+    setReload(!reload);
+   
   };
-
-
-
 
   //Plays Pokemon's cry
   const play = (src) => {
@@ -77,14 +98,15 @@ function GetRandomPokemon() {
     sound.play()
   }
 
-  //Get's Pokemon Data from API
+  //Get's Correct Pokemon Data from API
   const getPokemonComponent = () => {
     api
       .get("/api/v1/pokemon/random")
       .then((response) => {
         console.log(response);
-        setPokemon(response.data);
+        setCorrectPokemon(response.data);
         setsrc(response.data.cry)
+        
         play(response.data.cry);
 
       })
@@ -94,24 +116,77 @@ function GetRandomPokemon() {
   };
 
  
+//Get the Remaining 3 "incorrect Pokemon"
+const getIncorrectPokemonComponent = () =>{
+  api
+      .get("/api/v1/pokemon/random")
+      .then((response) => {
+        console.log(response);
+        setR1Pokemon(response.data);
 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  api
+      .get("/api/v1/pokemon/random")
+      .then((response) => {
+        console.log(response);
+        setR2Pokemon(response.data);
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  api
+      .get("/api/v1/pokemon/random")
+      .then((response) => {
+        console.log(response);
+        setR3Pokemon(response.data);
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  
+}  
+
+useEffect(()=>{
+  getPokemonComponent(); 
+  getIncorrectPokemonComponent();
+  
+},[reload])
+  
 
 
   return (
     <div>
-
+      
       {/* Button for resetting hints and going to the next round */}
       <button className = 'button' onClick={() => { 
-        getPokemonComponent(); 
-        resetComponent();
+        resetHintsComponent();
+        
         }}> <h1 className='font'>Next Round</h1>
       </button>
       
       {/* Box where the Pokemon Appear */}
       <div className='box'>
-        <img className='pokemon-bg' src={pokemon.sprite} onClick = {() =>{console.log("test"); }} />
+        {/* Displays all Pokemon and checks to see if displayed POkemon is correct Pokemon */}
+        
+         {images.map((image, index) => (
+        <img className='pokemon-bg' src={image.sprite}  key={index} onClick = {()=>{
+          
+          if(index === images.indexOf(pokemon)){
+            console.log("w"); //correct
+          }
+          else console.log("l"); //incorrect
+         }}/> 
+       ))} 
+         
       </div>
-
+     
 
       {/* Container for all the hint cards */}
       <div className="card-grid">
@@ -153,7 +228,7 @@ function GetRandomPokemon() {
             <h1 className = 'font'> Pokedex Entry: ?</h1>
           )}
         </div>
-      </div>
+      </div> 
 
 
 
