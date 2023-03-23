@@ -4,71 +4,22 @@ import React, { useState, useEffect, Component } from 'react';
 import useSound from 'use-sound';
 import { Howl } from 'howler';
 import './getRandomPokemon.css';
+import CardGrid from './cards';
+import {DisplayBar} from './displayBar';
+
 
 //Gets the random "correct" Pokemon for the round. Plays sound
 
 function GetRandomPokemon() {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setCorrectPokemon] = useState([]);
+  const [pR1, setR1Pokemon] = useState([]);
+  const [pR2, setR2Pokemon] = useState([]);
+  const [pR3, setR3Pokemon] = useState([]);
+  const pokemonData = [];
+  const [rel, setRel] = useState(false);
   const [src, setsrc] = useState([]);
 
-
- 
-
-  //START: Handles ability to click a hint button once
-  const [showIdContent, setShowIdContent] = useState(false);
-  const [showRegionContent, setShowRegionContent] = useState(false);
-  const [showTypeContent, setShowTypeContent] = useState(false);
-  const [showEntryContent, setShowEntryContent] = useState(false);
-
-  const [isIdClickable, setIsIdClickable] = useState(true);
-  const [isRegionClickable, setIsRegionClickable] = useState(true);
-  const [isTypeClickable, setIsTypeClickable] = useState(true);
-  const [isEntryClickable, setIsEntryClickable] = useState(true);
-
-
-  const handleIdClick = () => {
-    if (isIdClickable) {
-      setShowIdContent(true);
-      setIsIdClickable(false);
-    }
-  };
-
-  const handleRegionClick = () => {
-    if (isRegionClickable) {
-      setShowRegionContent(true);
-      setIsRegionClickable(false);
-    }
-  };
-  const handleTypeClick = () => {
-    if (isTypeClickable) {
-      setShowTypeContent(true);
-      setIsTypeClickable(false);
-    }
-  };
-  const handleEntryClick = () => {
-    if (isEntryClickable) {
-      setShowEntryContent(true);
-      setIsEntryClickable(false);
-    }
-  };
-  //END:
-
-  const resetComponent = () => {
-    setShowIdContent(false);
-    setShowRegionContent(false)
-    setShowTypeContent(false)
-    setShowEntryContent(false);
-
-    setIsIdClickable(true);
-    setIsRegionClickable(true);
-    setIsTypeClickable(true);
-    setIsEntryClickable(true);
-  };
-
-
-
-
-  //Plays Pokemon's cry
+  /*Plays Pokemon's cry*/
   const play = (src) => {
     const sound = new Howl({
       src,
@@ -77,90 +28,53 @@ function GetRandomPokemon() {
     sound.play()
   }
 
-  //Get's Pokemon Data from API
-  const getPokemonComponent = () => {
-    api
-      .get("/api/v1/pokemon/random")
-      .then((response) => {
-        console.log(response);
-        setPokemon(response.data);
-        setsrc(response.data.cry)
-        play(response.data.cry);
+  /*
+  Get's 4 Pokemon From Database at Once and sets them appropriately
+  Needs to be different request, otherwise you will get the same Pokemon. 
+  */
+  const getPokemon = () => {
+    const request = api.get("/api/v1/pokemon/random")
+    const request2 = api.get("/api/v1/pokemon/random")
+    const request3 = api.get("/api/v1/pokemon/random")
+    const request4 = api.get("/api/v1/pokemon/random")
 
+    Promise.all([request,request2,request3,request4])
+      .then(responses => {
+        setCorrectPokemon(responses[0].data);
+        play(responses[0].data.cry);
+        
+        setR1Pokemon(responses[1].data);
+        setR2Pokemon(responses[2].data);
+        setR3Pokemon(responses[3].data);
+        // console.log(responses); //For Testing Purposes
       })
       .catch((err) => {
         console.log(err);
-      });
+    })    
   };
 
- 
-
-
-
-  return (
+  
+  //Ensures we only get the Pokemon once per page refresh
+  useEffect(()=>{
+    getPokemon(); 
+  },[rel])
+  
+  pokemonData.push(pokemon);
+  pokemonData.push(pR1);
+  pokemonData.push(pR2);
+  pokemonData.push(pR3);
+  pokemonData.sort(() => Math.random() - 0.5)
+  
+  return(
     <div>
-
-      {/* Button for resetting hints and going to the next round */}
-      <button className = 'button' onClick={() => { 
-        getPokemonComponent(); 
-        resetComponent();
-        }}> <h1 className='font'>Next Round</h1>
-      </button>
-      
-      {/* Box where the Pokemon Appear */}
-      <div className='box'>
-        <img className='pokemon-bg' src={pokemon.sprite} onClick = {() =>{console.log("test"); }} />
-      </div>
-
-
-      {/* Container for all the hint cards */}
-      <div className="card-grid">
-
-        {/* Card for Pokedex Number */}
-        <div className="card" onClick={() => handleIdClick()}>
-          {showIdContent ? (
-            <h1 className='font'>{pokemon.id}</h1>
-          ) : (
-            <h1 className = 'font'> Pokedex Id: ?</h1>
-          )}
-        </div>
-
-
-        {/* Card for Pokemon type */}
-        <div className="card" onClick={() => handleTypeClick()}>
-          {showTypeContent ? (
-            <h1 className='font'>Pokemon Type(s): {pokemon.types}</h1>
-          ) : (
-            <h1 className = 'font'> Pokemon Type: ?</h1>
-          )}
-        </div>
-
-
-        {/* Card for Pokemon Region */}
-        <div className="card" onClick={() => handleRegionClick()}>
-          {showRegionContent ? (
-            <h1 className='font'>Region: {pokemon.region}</h1>
-          ) : (
-            <h1 className = 'font'> Pokemon Region: ?</h1>
-          )}
-        </div>
-
-        {/*Card for Pokemon Pokedex entry */}
-        <div className="card" onClick={() => handleEntryClick()}>
-          {showEntryContent ? (
-            <h1 className='font'> {pokemon.entry}</h1>
-          ) : (
-            <h1 className = 'font'> Pokedex Entry: ?</h1>
-          )}
-        </div>
-      </div>
-
-
-
+        <button className='button' onClick={()=>setRel(!rel)} >Click me</button>
+        <DisplayBar pokemonData = {pokemonData} correctPokemon = {pokemon}/> {/*Sends data to displayBar component to display all the images, and information about the correctPokemon*/}
+        <CardGrid pokemon = {pokemon} /> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
     </div>
+  ) ;
 
-
-  );
+  
 
 };
-export default GetRandomPokemon;
+
+export default GetRandomPokemon ; 
