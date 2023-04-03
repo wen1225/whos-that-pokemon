@@ -15,6 +15,7 @@ function GetRandomPokemon() {
   const [pR1, setR1Pokemon] = useState([]);
   const [pR2, setR2Pokemon] = useState([]);
   const [pR3, setR3Pokemon] = useState([]);
+
   const pokemonData = [];
   const [rel, setRel] = useState(false);
   const [src, setsrc] = useState([]);
@@ -28,25 +29,64 @@ function GetRandomPokemon() {
     sound.play()
   }
 
+  function checkIfValueExists(value) {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const storedValue = localStorage.getItem(key);
+      
+      if (storedValue === value) {
+        return true;
+      }
+    }
+    return false;
+  }
   /*
   Get's 4 Pokemon From Database at Once and sets them appropriately
   Needs to be different request, otherwise you will get the same Pokemon. 
   */
   const getPokemon = () => {
-    const request = api.get("/api/v1/pokemon/random")
-    const request2 = api.get("/api/v1/pokemon/random")
-    const request3 = api.get("/api/v1/pokemon/random")
-    const request4 = api.get("/api/v1/pokemon/random")
+    // const randomInt = Math.floor(Math.random() * 100) + 1;
+    const randomInts = [];
+    const requests = [];
+    const requestUrl = "/api/v1/pokemon/"
+    // const request1 = api.get(`${requestUrl}${randomInt}`)
+    // requests.push(request1);
+    
+    while(requests.length< 4){
+      const randomInt = Math.floor(Math.random() * 200) + 1;
+      
+      if (!randomInts.some(p => p === randomInt) ) {
+          if(checkIfValueExists(randomInt) == false){
+          const request1 = api.get(`${requestUrl}${randomInt}`)
+          requests.push(request1);
+          randomInts.push(randomInt);
+          localStorage.setItem(randomInt.toString(), randomInt.toString());
+          }
+        
+      }
+    }
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const storedValue = localStorage.getItem(key);
+      console.log(localStorage.length);
+    }
+    
+    
+    // const request2 = api.get("/api/v1/pokemon/random")
+    // const request3 = api.get("/api/v1/pokemon/random")
+    // const request4 = api.get("/api/v1/pokemon/random")
 
-    Promise.all([request,request2,request3,request4])
+
+
+    
+    Promise.all(requests)
       .then(responses => {
         setCorrectPokemon(responses[0].data);
-        play(responses[0].data.cry);
-        
         setR1Pokemon(responses[1].data);
         setR2Pokemon(responses[2].data);
         setR3Pokemon(responses[3].data);
         // console.log(responses); //For Testing Purposes
+        play(responses[0].data.cry);
       })
       .catch((err) => {
         console.log(err);
@@ -68,6 +108,7 @@ function GetRandomPokemon() {
   return(
     <div>
         <button className='button' onClick={()=>setRel(!rel)} >Click me</button>
+        
         <DisplayBar pokemonData = {pokemonData} correctPokemon = {pokemon}/> {/*Sends data to displayBar component to display all the images, and information about the correctPokemon*/}
         <CardGrid pokemon = {pokemon} /> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
     </div>

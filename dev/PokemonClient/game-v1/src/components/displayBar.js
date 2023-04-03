@@ -13,7 +13,7 @@ export function DisplayBar(props){
     <div className='box'>
         {pokemonData.map((pokemon, index) => (
         <div key={index}>
-          <img className = 'pokemon-bg' src={pokemon.sprite} alt={pokemon.name} onClick = {()=>{
+          <img className = 'pokemon-bg' src={pokemon.sprite}  onClick = {()=>{
             if(pokemon.name == correctPokemon.name){
                 console.log("W");
             } 

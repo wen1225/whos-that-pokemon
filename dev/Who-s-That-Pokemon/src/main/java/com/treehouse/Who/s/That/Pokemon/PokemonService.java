@@ -6,12 +6,17 @@ import java.util.Random;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.ConvertOperators.ToInt;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 
 @Service
 public class PokemonService {
     @Autowired
     private PokemonRepository pokemonRepository;
+   
+    Random rand = new Random();
+    
 
     //Returns all Pokemon from the Pokedex
     public List<Pokemon> allPokemon(){
@@ -26,8 +31,7 @@ public class PokemonService {
 
     //Return a random Pokemon from the Database
     public Optional<Pokemon> singleRandomPokemon(){
-        Random rand = new Random();
-        int id = rand.nextInt(260 - 1 + 1) + 1;
+        int id  = rand.nextInt(200 - 1 + 1) + 1;
         return pokemonRepository.findPokemonById(id);
     }
 
