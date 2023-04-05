@@ -28,8 +28,8 @@ public class PokemonController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Pokemon>> getEntryById(@PathVariable int id){
-        return new ResponseEntity<Optional<Pokemon>>(pokemonService.pokedexEntry(id), HttpStatus.OK);
+    public ResponseEntity<Optional<Pokemon>> getSinglePokemon(@PathVariable int id){
+        return new ResponseEntity<Optional<Pokemon>>(pokemonService.singlePokemon(id), HttpStatus.OK);
     }
 
     @GetMapping("/region/{id}")
