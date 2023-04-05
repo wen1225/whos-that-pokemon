@@ -1,5 +1,7 @@
 # front end dependencies
 /dev/PokemonClient/game-v1/node_modules
+/dev/PokemonClient/game-v1/package-lock.json
+/dev/PokemonClient/game-v1/package.json
 /node_modules
 package-lock.json
 package.json
