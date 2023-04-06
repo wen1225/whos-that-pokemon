@@ -34,6 +34,7 @@ function GetRandomPokemon() {
   })   
   }
 
+  //*IN PROGRESS TO CHECK IF POKEMON HAS BEEN USED ONCE IN SESSION
   function checkIfValueExists(value) {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
@@ -45,17 +46,16 @@ function GetRandomPokemon() {
     }
     return false;
   }
+
   /*
   Get's 4 Pokemon From Database at Once and sets them appropriately
-  Needs to be different request, otherwise you will get the same Pokemon. 
+  Keeps requesting until the 4 Pokemon are all unqiue from one another. 
   */
   const getPokemon = () => {
-    // const randomInt = Math.floor(Math.random() * 100) + 1;
+    
     const randomInts = [];
     const requests = [];
     const requestUrl = "/api/v1/pokemon/"
-    // const request1 = api.get(`${requestUrl}${randomInt}`)
-    // requests.push(request1);
     
     while(requests.length< 4){
       const randomInt = Math.floor(Math.random() * 200) + 1;
@@ -76,21 +76,12 @@ function GetRandomPokemon() {
       console.log(localStorage.length);
     }
     
-    
-    // const request2 = api.get("/api/v1/pokemon/random")
-    // const request3 = api.get("/api/v1/pokemon/random")
-    // const request4 = api.get("/api/v1/pokemon/random")
-
-
-
-    
     Promise.all(requests)
       .then(responses => {
         setCorrectPokemon(responses[0].data);
         setR1Pokemon(responses[1].data);
         setR2Pokemon(responses[2].data);
         setR3Pokemon(responses[3].data);
-        // console.log(responses); //For Testing Purposes
         play(responses[0].data.cry);
       })
       .catch((err) => {
@@ -104,12 +95,14 @@ function GetRandomPokemon() {
     getPokemon(); 
   },[roundCounter])
   
+  //Puts the Pokemon in an Array and Randomizes then
   pokemonData.push(pokemon);
   pokemonData.push(pR1);
   pokemonData.push(pR2);
   pokemonData.push(pR3);
   pokemonData.sort(() => Math.random() - 0.5)
 
+  //Increments the round Counter, we only want to get new pokemon once per round
   const incrementRounds = () =>{
     if(roundCounter != 20){
       setRoundCounter(roundCounter+1);

@@ -1,9 +1,6 @@
-import api from '../api/axiosConfig';
 import React, {useState, useEffect, Component} from 'react';
-// import  './getRandomPokemon.css';
 import './cards.css';
-// import GetRandomPokemon from './getRandomPokemon';
-// import { Button } from '@mui/material';
+
 
 function CardGrid(props){
   const { pokemon ,resetHints} = props;
@@ -18,7 +15,7 @@ function CardGrid(props){
   const [isTypeClickable, setIsTypeClickable] = useState(true);
   const [isEntryClickable, setIsEntryClickable] = useState(true);
 
-
+  //Handles all the card Clicking
   const handleIdClick = () => {
     if (isIdClickable) {
       setShowIdContent(true);
@@ -46,6 +43,7 @@ function CardGrid(props){
   };
   //END:
 
+  //Resets hints for the next Round
   const resetHintsComponent = () =>{
     setShowIdContent(false);
     setShowRegionContent(false)
@@ -56,20 +54,18 @@ function CardGrid(props){
     setIsRegionClickable(true);
     setIsTypeClickable(true);
     setIsEntryClickable(true);
-    // setReload(!reload);
    
   }; 
 
+  //Make sure to call this once 
   useEffect(()=>{
       resetHintsComponent(); 
    
   },[resetHints])
   
     return(
-
-      
       <div className="card-grid">
-        
+      
         {/* Card for Pokedex Number */}
         <div className="card" onClick={() => handleIdClick()}>
           {showIdContent ? (
@@ -107,13 +103,10 @@ function CardGrid(props){
             <h1 className='font'> Pokedex Entry: ?</h1>
           )}
         </div>
-
-
         
       </div>
 
       
     );
 }
-// CardGrid.resetHintsComponent = CardGrid().resetHintsComponent;
 export default CardGrid;
