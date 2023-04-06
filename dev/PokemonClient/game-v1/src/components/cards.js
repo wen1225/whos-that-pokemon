@@ -2,10 +2,11 @@ import api from '../api/axiosConfig';
 import React, {useState, useEffect, Component} from 'react';
 // import  './getRandomPokemon.css';
 import './cards.css';
-import GetRandomPokemon from './getRandomPokemon';
+// import GetRandomPokemon from './getRandomPokemon';
+// import { Button } from '@mui/material';
 
 function CardGrid(props){
-  const { pokemon } = props;
+  const { pokemon ,resetHints} = props;
     
   const [showIdContent, setShowIdContent] = useState(false);
   const [showRegionContent, setShowRegionContent] = useState(false);
@@ -45,7 +46,7 @@ function CardGrid(props){
   };
   //END:
 
-  const resetHintsComponent = () => {
+  const resetHintsComponent = () =>{
     setShowIdContent(false);
     setShowRegionContent(false)
     setShowTypeContent(false)
@@ -59,49 +60,60 @@ function CardGrid(props){
    
   }; 
 
-    
+  useEffect(()=>{
+      resetHintsComponent(); 
+   
+  },[resetHints])
+  
     return(
 
+      
       <div className="card-grid">
+        
+        {/* Card for Pokedex Number */}
+        <div className="card" onClick={() => handleIdClick()}>
+          {showIdContent ? (
+            <h1 className='font'>{pokemon.id}</h1>
+          ) : (
+            <h1 className='font'> Pokedex Id: ?</h1>
+          )}
+        </div>
 
-      {/* Card for Pokedex Number */}
-      <div className="card" onClick={() => handleIdClick()}>
-        {showIdContent ? (
-          <h1 className='font'>{pokemon.id}</h1>
-        ) : (
-          <h1 className = 'font'> Pokedex Id: ?</h1>
-        )}
+
+        {/* Card for Pokemon type */}
+        <div className="card" onClick={() => handleTypeClick()}>
+          {showTypeContent ? (
+            <h1 className='font'>Pokemon Type(s): {pokemon.types}</h1>
+          ) : (
+            <h1 className='font'> Pokemon Type: ?</h1>
+          )}
+        </div>
+
+
+        {/* Card for Pokemon Region */}
+        <div className="card" onClick={() => handleRegionClick()}>
+          {showRegionContent ? (
+            <h1 className='font'>Region: {pokemon.region}</h1>
+          ) : (
+            <h1 className='font'> Pokemon Region: ?</h1>
+          )}
+        </div>
+
+        {/*Card for Pokemon Pokedex entry */}
+        <div className="card" onClick={() => handleEntryClick()}>
+          {showEntryContent ? (
+            <h1 className='font'> {pokemon.entry}</h1>
+          ) : (
+            <h1 className='font'> Pokedex Entry: ?</h1>
+          )}
+        </div>
+
+
+        
       </div>
 
-
-      {/* Card for Pokemon type */}
-      <div className="card" onClick={() => handleTypeClick()}>
-        {showTypeContent ? (
-          <h1 className='font'>Pokemon Type(s): {pokemon.types}</h1>
-        ) : (
-          <h1 className = 'font'> Pokemon Type: ?</h1>
-        )}
-      </div>
-
-
-      {/* Card for Pokemon Region */}
-      <div className="card" onClick={() => handleRegionClick()}>
-        {showRegionContent ? (
-          <h1 className='font'>Region: {pokemon.region}</h1>
-        ) : (
-          <h1 className = 'font'> Pokemon Region: ?</h1>
-        )}
-      </div>
-
-      {/*Card for Pokemon Pokedex entry */}
-      <div className="card" onClick={() => handleEntryClick()}>
-        {showEntryContent ? (
-          <h1 className='font'> {pokemon.entry}</h1>
-        ) : (
-          <h1 className = 'font'> Pokedex Entry: ?</h1>
-        )}
-      </div>
-    </div>
+      
     );
 }
+// CardGrid.resetHintsComponent = CardGrid().resetHintsComponent;
 export default CardGrid;
