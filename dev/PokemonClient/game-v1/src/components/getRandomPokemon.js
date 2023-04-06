@@ -6,6 +6,7 @@ import { Howl } from 'howler';
 import './getRandomPokemon.css';
 import CardGrid from './cards';
 import {DisplayBar} from './displayBar';
+import RoundCounter from './roundCounter';
 
 
 //Gets the random "correct" Pokemon for the round. Plays sound
@@ -17,7 +18,8 @@ function GetRandomPokemon() {
   const [pR3, setR3Pokemon] = useState([]);
 
   const pokemonData = [];
-  const [rel, setRel] = useState(false);
+  const [roundCounter, setRoundCounter] = useState(0);
+  const [resetHints, setResetHints] = useState(false);
   const [src, setsrc] = useState([]);
 
   /*Plays Pokemon's cry*/
@@ -27,6 +29,9 @@ function GetRandomPokemon() {
       html5: true,
     });
     sound.play()
+    .catch((err) => {
+      console.log(err);
+  })   
   }
 
   function checkIfValueExists(value) {
@@ -97,20 +102,34 @@ function GetRandomPokemon() {
   //Ensures we only get the Pokemon once per page refresh
   useEffect(()=>{
     getPokemon(); 
-  },[rel])
+  },[roundCounter])
   
   pokemonData.push(pokemon);
   pokemonData.push(pR1);
   pokemonData.push(pR2);
   pokemonData.push(pR3);
   pokemonData.sort(() => Math.random() - 0.5)
+
+  const incrementRounds = () =>{
+    if(roundCounter != 20){
+      setRoundCounter(roundCounter+1);
+    }
+  }
+ 
+  
   
   return(
     <div>
-        <button className='button' onClick={()=>setRel(!rel)} >Click me</button>
+        <button className='button' onClick={()=>
+           {
+              incrementRounds();
+              setResetHints(!resetHints);
+           }
+        }  >Next Round</button>
         
         <DisplayBar pokemonData = {pokemonData} correctPokemon = {pokemon}/> {/*Sends data to displayBar component to display all the images, and information about the correctPokemon*/}
-        <CardGrid pokemon = {pokemon} /> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
+        <CardGrid pokemon = {pokemon} resetHints = {resetHints}/> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
+        <RoundCounter roundCounter = {roundCounter} /> 
     </div>
   ) ;
 
