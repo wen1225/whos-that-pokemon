@@ -1,5 +1,5 @@
 How to build game from scratch for expert users:
-Updated - 3/5/2023
+Updated - 4/9/2023
 
 Prerequisite downloads:
    
@@ -23,6 +23,7 @@ To run application:
   npm install
   npm install use-sound
   npm install howler
+  npm i --legacy-peer-deps 
   
   Run npm start
   If successful, localhost:3000 should pop up with the application running
