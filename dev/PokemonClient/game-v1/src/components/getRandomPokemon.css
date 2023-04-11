@@ -6,9 +6,6 @@ body {
     margin: 0;
   }
 
-
-
-
 /* .pokemon-bg{
     background:#EFEFEF;
     
@@ -21,17 +18,12 @@ body {
 
 } */
 
-
-
-
 h1{
     font-size: medium;
     line-height: 10px;
     text-align: center;
     background-color: white;
 }
-
-
 
 .button{
   position: absolute;
