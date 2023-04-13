@@ -15,32 +15,40 @@ function CardGrid(props){
   const [isTypeClickable, setIsTypeClickable] = useState(true);
   const [isEntryClickable, setIsEntryClickable] = useState(true);
 
-  //Handles all the card Clicking
-  const handleIdClick = () => {
-    if (isIdClickable) {
-      setShowIdContent(true);
-      setIsIdClickable(false);
-    }
-  };
-
-  const handleRegionClick = () => {
-    if (isRegionClickable) {
-      setShowRegionContent(true);
-      setIsRegionClickable(false);
-    }
-  };
-  const handleTypeClick = () => {
-    if (isTypeClickable) {
-      setShowTypeContent(true);
-      setIsTypeClickable(false);
-    }
-  };
-  const handleEntryClick = () => {
-    if (isEntryClickable) {
-      setShowEntryContent(true);
-      setIsEntryClickable(false);
-    }
-  };
+    //Handles all the card Clicking
+    const handleIdClick = () => {
+      if (isIdClickable) {
+        setShowIdContent(true);
+        setIsIdClickable(false);
+        //decrement point counter
+        handlePoints(-100);
+      }
+    };
+  
+    const handleRegionClick = () => {
+      if (isRegionClickable) {
+        setShowRegionContent(true);
+        setIsRegionClickable(false);
+        //decrement point counter
+        handlePoints(-100);
+      }
+    };
+    const handleTypeClick = () => {
+      if (isTypeClickable) {
+        setShowTypeContent(true);
+        setIsTypeClickable(false);
+        //decrement point counter
+        handlePoints(-100);
+      }
+    };
+    const handleEntryClick = () => {
+      if (isEntryClickable) {
+        setShowEntryContent(true);
+        setIsEntryClickable(false);
+        //decrement point counter
+        handlePoints(-100);
+      }
+    };
   //END:
 
   //Resets hints for the next Round
