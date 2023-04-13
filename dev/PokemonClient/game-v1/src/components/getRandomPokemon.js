@@ -24,18 +24,26 @@ function GetRandomPokemon() {
   const [resetHints, setResetHints] = useState(false);
   const [src, setsrc] = useState([]);
 
-  /*Plays Pokemon's cry*/
+  /*Plays Pokemon's cry after a small delay*/
   const play = (src) => {
     const sound = new Howl({
       src,
       html5: true,
+      onend: () => {
+        console.log('Audio has finished playing');
+      },
+      onplayerror: (err) => {
+        console.log(`Failed to play audio: ${err}`);
+      }
     });
-    sound.play()
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
+  
+    const delayInSeconds = 0.75;
+    const delayInMilliseconds = delayInSeconds * 1000;
+  
+    setTimeout(() => {
+      sound.play();
+    }, delayInMilliseconds);
+  };
   //*IN PROGRESS TO CHECK IF POKEMON HAS BEEN USED ONCE IN SESSION
   function checkIfValueExists(value) {
     for (let i = 0; i < localStorage.length; i++) {
