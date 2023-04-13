@@ -15,8 +15,8 @@ function Home() {
                 <Grid container spacing={2} justifyContent='center'>
                     <Box component="img" src={GameBoyImage} />
                     <Grid container spacing={3}>
-                        <Grid container item xs={12} justifyContent='center'><Link to='single' component="button" style={{ position:'absolute', top:'40%', textDecoration: 'none', color: 'black' }}>SinglePlayer</Link></Grid>
-                        <Grid container item xs={12} justifyContent='center'><Link to='multi' component="button" style={{ position:'absolute', top:'50%', textDecoration: 'none', color: 'black' }}>MultiPlayer</Link></Grid>
+                        <Grid container item xs={12} justifyContent='center'><Link to='sp-rules' component="button" style={{ position:'absolute', top:'40%', textDecoration: 'none', color: 'black' }}>SinglePlayer</Link></Grid>
+                        <Grid container item xs={12} justifyContent='center'><Link to='mp-rules' component="button" style={{ position:'absolute', top:'50%', textDecoration: 'none', color: 'black' }}>MultiPlayer</Link></Grid>
                     </Grid>
                 </Grid>
             </Box>
