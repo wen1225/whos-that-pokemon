@@ -21,7 +21,7 @@ function CardGrid(props){
         setShowIdContent(true);
         setIsIdClickable(false);
         //decrement point counter
-        handlePoints(-100);
+        //handlePoints(-100);
       }
     };
   
@@ -30,7 +30,7 @@ function CardGrid(props){
         setShowRegionContent(true);
         setIsRegionClickable(false);
         //decrement point counter
-        handlePoints(-100);
+        //handlePoints(-100);
       }
     };
     const handleTypeClick = () => {
@@ -38,7 +38,7 @@ function CardGrid(props){
         setShowTypeContent(true);
         setIsTypeClickable(false);
         //decrement point counter
-        handlePoints(-100);
+        //handlePoints(-100);
       }
     };
     const handleEntryClick = () => {
@@ -46,7 +46,7 @@ function CardGrid(props){
         setShowEntryContent(true);
         setIsEntryClickable(false);
         //decrement point counter
-        handlePoints(-100);
+        //handlePoints(-100);
       }
     };
   //END:

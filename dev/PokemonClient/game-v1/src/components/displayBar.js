@@ -20,7 +20,7 @@ export function DisplayBar(props) {
             else {
               console.log("L");
               //and update point counter 
-              handlePoints(500);
+              //handlePoints(500);
             }
           }} />
         </div>
