@@ -22,6 +22,7 @@ function App() {
     <Route path='multi' element={<MultiPlayer />}></Route>
     <Route path='sp-rules' element={<SP_Rules />}></Route>
     <Route path='mp-rules' element={<MP_Rules />}></Route>
+    <Route path='gameover' element={<GameOver />}></Route>
    </Routes>
   </>
    
