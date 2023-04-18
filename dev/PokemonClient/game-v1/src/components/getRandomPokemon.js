@@ -10,6 +10,7 @@ import RoundCounter from './roundCounter';
 import { Button } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 //Gets the random "correct" Pokemon for the round. Plays sound
 
@@ -36,10 +37,10 @@ function GetRandomPokemon() {
         console.log(`Failed to play audio: ${err}`);
       }
     });
-  
+
     const delayInSeconds = 0.75;
     const delayInMilliseconds = delayInSeconds * 1000;
-  
+
     setTimeout(() => {
       sound.play();
     }, delayInMilliseconds);
@@ -118,6 +119,13 @@ function GetRandomPokemon() {
     getPokemon();
   }, [roundCounter])
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (roundCounter === 20) {
+      navigate('/gameover');
+    }
+  })
+
   return (
     <React.Fragment>
       {/*<button className='button' onClick={() => {
@@ -139,6 +147,7 @@ function GetRandomPokemon() {
         incrementRounds();
         setResetHints(!resetHints);
       }}>Next Round</Button>
+
     </React.Fragment>
   );
 
