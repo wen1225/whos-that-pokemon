@@ -26,5 +26,10 @@
 
 .pokemon-bg:hover {
   opacity: 1;
-  transition: opacity 0.2s ease-in-out;
+  /* transition: opacity 0.2s ease-in-out; */
+}
+
+.clicked {
+  opacity: 1;
+ 
 }
