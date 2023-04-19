@@ -1,7 +1,6 @@
-import api from '../api/axiosConfig';
 import React, { useState } from 'react';
 import './displayBar.css';
-import { blue, green } from '@mui/material/colors';
+import Popup from './popup';
 
 export function DisplayBar(props) {
   const { pokemonData, correctPokemon } = props;
@@ -18,45 +17,47 @@ export function DisplayBar(props) {
     if (!selectionMade) {
       if (pokemon.name === correctPokemon.name) {
         console.log('Correct Pokemon clicked!');
-        setBgColor((prevBgColor) => ({
-          ...prevBgColor,
-          [pokemon.id]: '#AFE1AF', //green
-        }));
         setIsCorrect(true);
+        setBgColor('#AFE1AF') //Sets the color of the popup green
       } else {
         console.log('Incorrect Pokemon clicked.');
-        setBgColor((prevBgColor) => ({
-          ...prevBgColor,
-          [pokemon.id]: '#FA8072', //red
-        }));
         setIsCorrect(false);
+        setBgColor('#FA8072'); //Sets the color of the popup red
       }
-      //Resets the bg of the Pokemon after 2000 milliseconds
+      setSelectionMade(true); //Selection has been made
+
+      //Resets the selection of the Pokemon after 2000 milliseconds
       setTimeout(() => {
-        setBgColor((prevBgColor) => ({
-          ...prevBgColor,
-          [pokemon.id]: '',
-        }));
         setSelectionMade(false);
       }, 2000);
-      setSelectionMade(true);
+      
     }
   };
 
   //Returns the box where all the clickable Pokemon images are displayed
   return (
-    <div className='box'>
-      {pokemonData.map((pokemon, index) => (
-        <div key={index}>
-          <img className='pokemon-bg' src={pokemon.sprite} alt={pokemon.name} style={{ backgroundColor: bgColor[pokemon.id] }} onClick={() => handleClick(pokemon)}
-          />
-          
-        </div>
-      ))}
-      
+    <div>
+      <div className="box">
+        {pokemonData.map((pokemon, index) => (
+          <div key={index}>
+            <img className="pokemon-bg" src={pokemon.sprite} alt={pokemon.name} onClick={() => handleClick(pokemon)} />
+          </div>
+        ))}
+      </div>
+      {/* Popup for Correct Pokemon */}
+      {isCorrect && selectionMade &&(
+        <Popup className="popup" pokemon={correctPokemon} text= "Correct!" backgroundColor={bgColor} onClose={() => setIsCorrect(false)} />
+      )}
+
+
+      {/* Popup for Incorrect Pokemon */}
+      {!isCorrect && selectionMade && (
+        <Popup className="popup" pokemon={correctPokemon} text = "Incorrect" backgroundColor={bgColor} onClose={() => setIsCorrect(false)} />
+      )}
     </div>
-    
   );
+  
+  
 }
 
 export default DisplayBar;
