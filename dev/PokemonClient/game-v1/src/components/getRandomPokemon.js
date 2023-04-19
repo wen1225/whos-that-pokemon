@@ -69,7 +69,7 @@ function GetRandomPokemon() {
     const requestUrl = "/api/v1/pokemon/"
 
     while (requests.length < 4) {
-      const randomInt = Math.floor(Math.random() * 503) + 1;
+      const randomInt = Math.floor(Math.random() * 1008) + 1;
 
       if (!randomInts.some(p => p === randomInt)) {
         if (checkIfValueExists(randomInt) == false) {

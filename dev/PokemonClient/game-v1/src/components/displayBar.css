@@ -1,27 +1,33 @@
-@media only screen and (min-width: 480px) {
+/* @media only screen and (min-width: 480px) {
   .box {
     display:flex;
     position: relative;
     justify-content: space-between;
+    align-items: flex-end;
   }
-}
+} */
 
 
 .box {
   display: flex;
   position: relative;
   justify-content: space-between;
-  background: #EFEFEF;
+  background: white;
   border-radius: 3px;
+  align-items: flex-end;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .pokemon-bg {
   opacity: 0.8;
   background: #EFEFEF;
-
+  width: 150px;
+  height: 150px;
+  object-fit: contain; 
+  overflow: hidden; 
+  object-position: center bottom;
+  background-color: transparent;
 }
-
 .pokemon-bg:hover {
   opacity: 1;
   /* transition: opacity 0.2s ease-in-out; */
