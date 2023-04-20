@@ -34,20 +34,8 @@ To run application:
   If there are still problems, consider running this command:
   `npm i --force`
   
-  
-  ***VERIFY ***
-  In the terminal, navigate to /PokemonClient/game-v1 in the project directory 
-  If first time running the project, will need to run the following commands:
-  ```
-  npm install
-  npm install use-sound
-  npm install howler
-  npm i --legacy-peer-deps
-  ```
-  
-  Lastly, run the following:
+  Lastly, run the app on `localhost:3000` with:
   `npm start`
-  
    
     
     
