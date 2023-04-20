@@ -1,0 +1,9 @@
+.box {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    background: white !important;
+    border-radius: 3px;
+    align-items: flex-end;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+  }
