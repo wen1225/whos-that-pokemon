@@ -10,6 +10,7 @@ import SinglePlayer from './pages/SinglePlayer';
 import MultiPlayer from './pages/MultiPlayer';
 import SP_Rules from './pages/Rules Page/SinglePlayer';
 import MP_Rules from './pages/Rules Page/MultiPlayer';
+import Lobby from './pages/Lobby';
 
 import GameOver from './pages/GameOver';
 function App() {
@@ -23,6 +24,7 @@ function App() {
     <Route path='sp-rules' element={<SP_Rules />}></Route>
     <Route path='mp-rules' element={<MP_Rules />}></Route>
     <Route path='gameover' element={<GameOver />}></Route>
+    <Route path = 'lobby' element = {<Lobby />} />
    </Routes>
   </>
    
