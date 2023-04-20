@@ -25,10 +25,12 @@ To run application:
   
   In the terminal, navigate to /PokemonClient/game-v1 in the project directory 
   If first time running the project, will need to run the following commands:
-  `npm install`
-  `npm install use-sound`
-  `npm install howler`
-  `npm i --legacy-peer-deps`
+  ```
+  npm install
+  npm install use-sound
+  npm install howler
+  npm i --legacy-peer-deps
+  ```
   
   Run npm start
   If successful, localhost:3000 should pop up with the application running
@@ -40,10 +42,12 @@ To run application:
   ***TO VERIFY PROGRESS FOLLOW THE STEPS BELOW***
   In the terminal, navigate to /PokemonClient/game-v1 in the project directory 
   If first time running the project, will need to run the following commands:
-  `npm install`
-  `npm install use-sound`
-  `npm install howler`
-  `npm i --legacy-peer-deps`
+  ```
+  npm install
+  npm install use-sound
+  npm install howler
+  npm i --legacy-peer-deps
+  ```
   
   Lastly, run the following:
   `npm start`
