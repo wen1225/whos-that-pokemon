@@ -1,0 +1,2 @@
+to_be_fixed.pdf - List the problems that can be fixed but not done yet,  along with the expected dates for fixes.
+not_to_be_fixed.pdf - For the enhancement problems that cannot or will not be implemented, add the problems along with the reasons for not fixing them.
