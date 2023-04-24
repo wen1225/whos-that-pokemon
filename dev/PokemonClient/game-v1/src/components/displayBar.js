@@ -3,7 +3,7 @@ import './displayBar.css';
 import Popup from './popup';
 
 export function DisplayBar(props) {
-  const { pokemonData, correctPokemon } = props;
+  const { pokemonData, correctPokemon, onSelectionMade } = props;
   const [bgColor, setBgColor] = useState({});
   const [selectionMade, setSelectionMade] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -25,7 +25,11 @@ export function DisplayBar(props) {
         setBgColor('#FA8072'); //Sets the color of the popup red
       }
       setSelectionMade(true); //Selection has been made
-
+      
+      setTimeout(() => {
+        onSelectionMade();
+      }, 2000);
+     
       //Resets the selection of the Pokemon after 2000 milliseconds
       setTimeout(() => {
         setSelectionMade(false);
