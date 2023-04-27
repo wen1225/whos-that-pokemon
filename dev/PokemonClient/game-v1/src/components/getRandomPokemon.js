@@ -1,7 +1,6 @@
 //import './App.css';
 import api from '../api/axiosConfig';
 import React, { useState, useEffect, Component } from 'react';
-import useSound from 'use-sound';
 import { Howl } from 'howler';
 import './getRandomPokemon.css';
 import CardGrid from './cards';
@@ -21,7 +20,7 @@ function GetRandomPokemon() {
   const [pR3, setR3Pokemon] = useState([]);
 
   const pokemonData = [];
-  const [roundCounter, setRoundCounter] = useState(0);
+  const [roundCounter, setRoundCounter] = useState(1);
   const [resetHints, setResetHints] = useState(false);
   const [src, setsrc] = useState([]);
   //Point Counter 
@@ -123,12 +122,18 @@ function GetRandomPokemon() {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (roundCounter === 20) {
+    if (roundCounter === 6) {
       navigate('/gameover');
     }
   })
 
- 
+
+  const handlePokemonOnClick = () =>{
+    setResetHints(!resetHints);
+    incrementRounds();
+  }
+
+
   return (
     <React.Fragment>
       {/*<button className='button' onClick={() => {
@@ -137,21 +142,20 @@ function GetRandomPokemon() {
       }
       }>Next Round</button>*/}
       <div className="container">
-        <DisplayBar pokemonData={pokemonData} correctPokemon={pokemon} /> {/*Sends data to displayBar component to display all the images, and information about the correctPokemon*/}
+        <DisplayBar pokemonData={pokemonData} correctPokemon={pokemon} onSelectionMade={handlePokemonOnClick} /> {/*Sends data to displayBar component to display all the images, and information about the correctPokemon*/}
         <CardGrid pokemon={pokemon} resetHints={resetHints} /> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
       </div>
 
-      <Box sx={{ position: 'relative' }}>
-      <Typography variant="h6">Counter: {roundCounter}</Typography>
-      </Box>
+      <Box sx={{ position: 'relative' }}><Typography variant="h6">Round: {roundCounter}</Typography></Box>
+
 
       {/*Temporary counter component to test counting*/}
       {/*Commented out since it follows normal document flow and will be masked by the box and grid components */}
       {/*<RoundCounter roundCounter={roundCounter} />*/}
-      <Button onClick={() => {
+      {/* <Button onClick={() => {
         incrementRounds();
         setResetHints(!resetHints);
-      }}>Next Round</Button>
+      }}>Next Round</Button> */}
 
     </React.Fragment>
   );
