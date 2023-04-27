@@ -1,17 +1,13 @@
 import React, { useState } from "react";
+//import './pointSystem.css';
 
-const PointSystem = () => {
-  const [points, setPoints] = useState(0);
-
-  const handlePoints = (pointsChange) => {
-    setPoints(points + pointsChange);
-  };
-
+function PointSystem(props) {
+  const { points, handlePoints } = props; 
   return (
     <div>
       <h2>Points: {points}</h2>
     </div>
   );
-};
+}
 
 export default PointSystem;

@@ -24,6 +24,8 @@ function GetRandomPokemon() {
   const [roundCounter, setRoundCounter] = useState(0);
   const [resetHints, setResetHints] = useState(false);
   const [src, setsrc] = useState([]);
+  //Point Counter 
+  //const [points, setPoints] = useState(0);
 
   /*Plays Pokemon's cry after a small delay*/
   const play = (src) => {
@@ -126,6 +128,7 @@ function GetRandomPokemon() {
     }
   })
 
+ 
   return (
     <React.Fragment>
       {/*<button className='button' onClick={() => {
@@ -138,7 +141,9 @@ function GetRandomPokemon() {
         <CardGrid pokemon={pokemon} resetHints={resetHints} /> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
       </div>
 
-      <Box sx={{ position: 'relative' }}><Typography variant="h6">Counter: {roundCounter}</Typography></Box>
+      <Box sx={{ position: 'relative' }}>
+      <Typography variant="h6">Counter: {roundCounter}</Typography>
+      </Box>
 
       {/*Temporary counter component to test counting*/}
       {/*Commented out since it follows normal document flow and will be masked by the box and grid components */}

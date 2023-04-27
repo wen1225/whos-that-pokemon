@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import './displayBar.css';
 import Popup from './popup';
+import PointSystem from './pointSystem';
 
 export function DisplayBar(props) {
-  const { pokemonData, correctPokemon } = props;
+  const { pokemonData, correctPokemon, } = props;
   const [bgColor, setBgColor] = useState({});
   const [selectionMade, setSelectionMade] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [points, setPoints] = useState(0);
+  const handlePoints = (pointsChange) => {
+    setPoints(points + pointsChange);
+  };
 
 
    /*Handles Clicks on Pokemon image.
@@ -19,6 +24,8 @@ export function DisplayBar(props) {
         console.log('Correct Pokemon clicked!');
         setIsCorrect(true);
         setBgColor('#AFE1AF') //Sets the color of the popup green
+        //update points
+        handlePoints(500);
       } else {
         console.log('Incorrect Pokemon clicked.');
         setIsCorrect(false);
@@ -38,12 +45,12 @@ export function DisplayBar(props) {
   return (
     <div>
       <div className="box">
-        {pokemonData.map((pokemon, index) => (
-          <div key={index}>
+      {pokemonData.map((pokemon, index) => (
+        <div key={index}>
             <img className="pokemon-bg" src={pokemon.sprite} alt={pokemon.name} onClick={() => handleClick(pokemon)} />
-          </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
       {/* Popup for Correct Pokemon */}
       {isCorrect && selectionMade &&(
         <Popup className="popup" pokemon={correctPokemon} text= "Correct!" backgroundColor={bgColor} onClose={() => setIsCorrect(false)} />
@@ -54,10 +61,9 @@ export function DisplayBar(props) {
       {!isCorrect && selectionMade && (
         <Popup className="popup" pokemon={correctPokemon} text = "Incorrect" backgroundColor={bgColor} onClose={() => setIsCorrect(false)} />
       )}
+       <PointSystem points={points} handlePoints={handlePoints} /> 
+       
     </div>
   );
-  
-  
 }
-
 export default DisplayBar;
