@@ -1,5 +1,6 @@
 import React, {useState, useEffect, Component} from 'react';
 import './cards.css';
+import PointSystem from './pointSystem';
 
 
 function CardGrid(props){
@@ -14,6 +15,10 @@ function CardGrid(props){
   const [isRegionClickable, setIsRegionClickable] = useState(true);
   const [isTypeClickable, setIsTypeClickable] = useState(true);
   const [isEntryClickable, setIsEntryClickable] = useState(true);
+  const [points, setPoints] = useState(0);
+  const handlePoints = (pointsChange) => {
+    setPoints(points + pointsChange);
+  };
 
     //Handles all the card Clicking
     const handleIdClick = () => {
@@ -21,7 +26,7 @@ function CardGrid(props){
         setShowIdContent(true);
         setIsIdClickable(false);
         //decrement point counter
-        //handlePoints(-100);
+        handlePoints(-100);
       }
     };
   
@@ -30,7 +35,7 @@ function CardGrid(props){
         setShowRegionContent(true);
         setIsRegionClickable(false);
         //decrement point counter
-        //handlePoints(-100);
+        handlePoints(-100);
       }
     };
     const handleTypeClick = () => {
@@ -38,7 +43,7 @@ function CardGrid(props){
         setShowTypeContent(true);
         setIsTypeClickable(false);
         //decrement point counter
-        //handlePoints(-100);
+        handlePoints(-100);
       }
     };
     const handleEntryClick = () => {
@@ -46,7 +51,7 @@ function CardGrid(props){
         setShowEntryContent(true);
         setIsEntryClickable(false);
         //decrement point counter
-        //handlePoints(-100);
+        handlePoints(-100);
       }
     };
   //END:
@@ -111,6 +116,7 @@ function CardGrid(props){
             <h1 className='font'> Pokedex Entry: ?</h1>
           )}
         </div>
+        <PointSystem points={points} handlePoints={handlePoints} /> 
         
       </div>
 
