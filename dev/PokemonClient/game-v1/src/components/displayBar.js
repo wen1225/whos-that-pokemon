@@ -5,7 +5,7 @@ import PointSystem from './pointSystem';
 
 export function DisplayBar(props) {
 
-  const { pokemonData, correctPokemon, } = props;
+
   const { pokemonData, correctPokemon, onSelectionMade } = props;
 
   const [bgColor, setBgColor] = useState({});

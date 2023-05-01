@@ -1,25 +1,19 @@
-import React, { useState, useEffect, Component } from 'react';
-import DisplayBar from "../displayBar";
-import { Button } from "@mui/material";
+import React, { useState, useEffect } from 'react';
 import DisplayJoinCode from './joinCode';
+import { firebase, db, auth } from './firebase';
+import 'firebase/database';
+
 
 function MpLobby(){
-    const [joinCode, setJoinCode] = useState('');
-    
+    const [joinCode, setJoinCode] = useState(0);
 
-    useEffect(() => {
-        const code = Math.random().toString(36).substring(2, 8);
-        setJoinCode(code);
-        
-      }, []);
     
-    console.log(joinCode);
+    
     return(
         <div className="container">
            <DisplayJoinCode joinCode = {joinCode}/>
-           
-           
         </div>
     )
 };
+
 export default MpLobby;
