@@ -1,9 +1,10 @@
 import React, {useState, useEffect, Component} from 'react';
 import './cards.css';
+import PointSystem from './pointSystem';
 
 
 function CardGrid(props){
-  const { pokemon ,resetHints} = props;
+  const { pokemon ,resetHints, handleHintClick, resetHintCount} = props;
     
   const [showIdContent, setShowIdContent] = useState(false);
   const [showRegionContent, setShowRegionContent] = useState(false);
@@ -14,14 +15,16 @@ function CardGrid(props){
   const [isRegionClickable, setIsRegionClickable] = useState(true);
   const [isTypeClickable, setIsTypeClickable] = useState(true);
   const [isEntryClickable, setIsEntryClickable] = useState(true);
+  
+  
 
     //Handles all the card Clicking
     const handleIdClick = () => {
       if (isIdClickable) {
         setShowIdContent(true);
         setIsIdClickable(false);
-        //decrement point counter
-        //handlePoints(-100);
+        handleHintClick();
+        
       }
     };
   
@@ -29,24 +32,24 @@ function CardGrid(props){
       if (isRegionClickable) {
         setShowRegionContent(true);
         setIsRegionClickable(false);
-        //decrement point counter
-        //handlePoints(-100);
+        handleHintClick();
+        
       }
     };
     const handleTypeClick = () => {
       if (isTypeClickable) {
         setShowTypeContent(true);
         setIsTypeClickable(false);
-        //decrement point counter
-        //handlePoints(-100);
+        handleHintClick();
+        
       }
     };
     const handleEntryClick = () => {
       if (isEntryClickable) {
         setShowEntryContent(true);
         setIsEntryClickable(false);
-        //decrement point counter
-        //handlePoints(-100);
+        handleHintClick();
+        
       }
     };
   //END:
@@ -62,6 +65,7 @@ function CardGrid(props){
     setIsRegionClickable(true);
     setIsTypeClickable(true);
     setIsEntryClickable(true);
+    resetHintCount();
    
   }; 
 
@@ -111,6 +115,7 @@ function CardGrid(props){
             <h1 className='font'> Pokedex Entry: ?</h1>
           )}
         </div>
+        
         
       </div>
 
