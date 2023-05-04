@@ -10,6 +10,7 @@ import { Button } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import PointSystem from './pointSystem';
 
 //Gets the random "correct" Pokemon for the round. Plays sound
 
@@ -19,12 +20,15 @@ function GetRandomPokemon() {
   const [pR2, setR2Pokemon] = useState([]);
   const [pR3, setR3Pokemon] = useState([]);
 
-  const pokemonData = [];
+  const [pokemonData,setPokemonData] = useState([]);
   const [roundCounter, setRoundCounter] = useState(1);
   const [resetHints, setResetHints] = useState(false);
   const [src, setsrc] = useState([]);
-  //Point Counter 
-  //const [points, setPoints] = useState(0);
+
+  //For point system
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [hintCount, setHintCount] = useState(0);
+  
 
   /*Plays Pokemon's cry after a small delay*/
   const play = (src) => {
@@ -102,11 +106,17 @@ function GetRandomPokemon() {
   };
 
   //Puts the Pokemon in an Array and Randomizes then
-  pokemonData.push(pokemon);
-  pokemonData.push(pR1);
-  pokemonData.push(pR2);
-  pokemonData.push(pR3);
-  pokemonData.sort(() => Math.random() - 0.5)
+  // pokemonData.push(pokemon);
+  // pokemonData.push(pR1);
+  // pokemonData.push(pR2);
+  // pokemonData.push(pR3);
+  
+  // pokemonData.sort(() => Math.random() - 0.5)
+  useEffect(() =>{
+    const data = [pokemon, pR1, pR2, pR3];
+    data.sort(()=>Math.random()-0.5);
+    setPokemonData(data);
+  },[pokemon, pR1, pR2, pR3]);
 
   //Increments the round Counter, we only want to get new pokemon once per round
   const incrementRounds = () => {
@@ -133,29 +143,33 @@ function GetRandomPokemon() {
     incrementRounds();
   }
 
+  const handleCorrectGuess = () => {
+    setIsCorrect(true);
+  }
+
+  const resetCorrectGuess = () =>{
+    setIsCorrect(false);
+  }
+
+  const handleHintClick = () => {
+    setHintCount(count => count + 1);
+  }
+
+  const resetHintCount = () =>{
+    setHintCount(0);
+  }
 
   return (
     <React.Fragment>
-      {/*<button className='button' onClick={() => {
-        incrementRounds();
-        setResetHints(!resetHints);
-      }
-      }>Next Round</button>*/}
+    
       <div className="container">
-        <DisplayBar pokemonData={pokemonData} correctPokemon={pokemon} onSelectionMade={handlePokemonOnClick} /> {/*Sends data to displayBar component to display all the images, and information about the correctPokemon*/}
-        <CardGrid pokemon={pokemon} resetHints={resetHints} /> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
+        <DisplayBar pokemonData={pokemonData} correctPokemon={pokemon} onSelectionMade={handlePokemonOnClick} handleCorrectGuess={handleCorrectGuess} resetCorrectGuess = {resetCorrectGuess}/> {/*Sends data to displayBar component to display all the images, and information about the correctPokemon*/}
+        <CardGrid pokemon={pokemon} resetHints={resetHints} handleHintClick={handleHintClick} resetHintCount = {resetHintCount}/> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
+        <PointSystem isCorrect={isCorrect} hintCount={hintCount} />
       </div>
 
       <Box sx={{ position: 'relative' }}><Typography variant="h6">Round: {roundCounter}</Typography></Box>
 
-
-      {/*Temporary counter component to test counting*/}
-      {/*Commented out since it follows normal document flow and will be masked by the box and grid components */}
-      {/*<RoundCounter roundCounter={roundCounter} />*/}
-      {/* <Button onClick={() => {
-        incrementRounds();
-        setResetHints(!resetHints);
-      }}>Next Round</Button> */}
 
     </React.Fragment>
   );
