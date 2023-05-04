@@ -13,7 +13,7 @@ function MpLobby(){
         
       }, []);
     
-    console.log(joinCode);
+    //console.log(joinCode);
     return(
         <div className="container">
            <DisplayJoinCode joinCode = {joinCode}/>
