@@ -1,12 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/pikachu-piplup.gif';
 import styles from "./styles.module.css";
 
 
 function GameOver() {
+
+  // redirects the user to the front page afte five seconds
+  const navigate = useNavigate();
+  setTimeout(() => {
+    navigate('/');
+  }, 5000);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} /*className="App-logo"*/ alt="logo" />
+        <img src={logo} alt="logo" />
         <p>
           Game Over Trainer.
         </p>
