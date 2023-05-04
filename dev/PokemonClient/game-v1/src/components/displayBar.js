@@ -6,15 +6,13 @@ import PointSystem from './pointSystem';
 export function DisplayBar(props) {
 
 
-  const { pokemonData, correctPokemon, onSelectionMade } = props;
+  const { pokemonData, correctPokemon, onSelectionMade, handleCorrectGuess, resetCorrectGuess } = props;
 
   const [bgColor, setBgColor] = useState({});
   const [selectionMade, setSelectionMade] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [points, setPoints] = useState(0);
-  const handlePoints = (pointsChange) => {
-    setPoints(points + pointsChange);
-  };
+  
+  
 
 
    /*Handles Clicks on Pokemon image.
@@ -25,16 +23,17 @@ export function DisplayBar(props) {
     if (!selectionMade) {
       if (pokemon.name === correctPokemon.name) {
         console.log('Correct Pokemon clicked!');
+        handleCorrectGuess();
         setIsCorrect(true);
-        setBgColor('#AFE1AF') //Sets the color of the popup green
-        //update points
-        handlePoints(500);
+        setBgColor('#AFE1AF') //green
+        
+        
       } else {
         console.log('Incorrect Pokemon clicked.');
         setIsCorrect(false);
-        setBgColor('#FA8072'); //Sets the color of the popup red
+        setBgColor('#FA8072'); //red
       }
-      setSelectionMade(true); //Selection has been made
+      setSelectionMade(true); 
       
       setTimeout(() => {
         onSelectionMade();
@@ -43,6 +42,7 @@ export function DisplayBar(props) {
       //Resets the selection of the Pokemon after 2000 milliseconds
       setTimeout(() => {
         setSelectionMade(false);
+        resetCorrectGuess();
       }, 2000);
       
     }
@@ -68,7 +68,7 @@ export function DisplayBar(props) {
       {!isCorrect && selectionMade && (
         <Popup className="popup" pokemon={correctPokemon} text = "Incorrect" backgroundColor={bgColor} onClose={() => setIsCorrect(false)} />
       )}
-       <PointSystem points={points} handlePoints={handlePoints} /> 
+       
        
     </div>
   );
