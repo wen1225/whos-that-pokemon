@@ -27,6 +27,7 @@ To run application:
   npm install
   npm install use-sound
   npm install howler
+  npm install firebase --legacy-peer-deps
   npm install @mui/material @emotion/react @emotion/styled
   npm i --legacy-peer-deps
   ```
