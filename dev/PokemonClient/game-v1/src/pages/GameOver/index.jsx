@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/pikachu-piplup.gif';
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 
 function GameOver() {
@@ -12,13 +12,13 @@ function GameOver() {
   }, 5000);
 
   return (
-    <div className="ending-page">
-      <h1 className="game-over-text">Game Over!</h1>
-      <p className="total-points-text">Total points: </p>
-      <p className="great-score-text">Great score! Another game?</p>
-      <div className="button-container">
-        <button className="home-button">Home</button>
-        <button className="play-again-button">Play Again</button>
+    <div className={styles.ending_page}>
+      <h1 className={styles.game_over_text}>Game Over!</h1>
+      <p className={styles.total_points_text}>Total points: </p>
+      <p className={styles.great_score_text}>Great score! Another game?</p>
+      <div className={styles.button_container}>
+        <button className={styles.home_button}>Home</button>
+        <button className={styles.play_again_button}>Play Again</button>
       </div>
     </div>
   );
