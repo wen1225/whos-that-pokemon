@@ -43,7 +43,7 @@ function SP_Rules() {
             if (isReady) {
                 setTimeout(() => {
                     navigate('/single');
-                }, 100);
+                }, .1);
             }
         })
     }

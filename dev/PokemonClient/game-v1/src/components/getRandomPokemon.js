@@ -5,11 +5,8 @@ import { Howl } from 'howler';
 import './getRandomPokemon.css';
 import CardGrid from './cards';
 import { DisplayBar } from './displayBar';
-import RoundCounter from './roundCounter';
-import { Button } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import PointSystem from './pointSystem';
 
 //Gets the random "correct" Pokemon for the round. Plays sound
@@ -73,7 +70,7 @@ function GetRandomPokemon() {
     const requests = [];
     const requestUrl = "/api/v1/pokemon/"
 
-    while (requests.length < 4) {
+    while (requests.length < 4 && roundCounter < 6) {
       const randomInt = Math.floor(Math.random() * 1008) + 1;
 
       if (!randomInts.some(p => p === randomInt)) {
@@ -130,12 +127,7 @@ function GetRandomPokemon() {
     getPokemon();
   }, [roundCounter])
 
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (roundCounter === 6) {
-      navigate('/gameover');
-    }
-  })
+  
 
 
   const handlePokemonOnClick = () =>{
@@ -165,7 +157,7 @@ function GetRandomPokemon() {
       <div className="container">
         <DisplayBar pokemonData={pokemonData} correctPokemon={pokemon} onSelectionMade={handlePokemonOnClick} handleCorrectGuess={handleCorrectGuess} resetCorrectGuess = {resetCorrectGuess}/> {/*Sends data to displayBar component to display all the images, and information about the correctPokemon*/}
         <CardGrid pokemon={pokemon} resetHints={resetHints} handleHintClick={handleHintClick} resetHintCount = {resetHintCount}/> {/*Sends correct Pokemon's data to CardGrid component to display hints*/}
-        <PointSystem isCorrect={isCorrect} hintCount={hintCount} />
+        <PointSystem isCorrect={isCorrect} hintCount={hintCount} roundCounter = {roundCounter} />
       </div>
 
       <Box sx={{ position: 'relative' }}><Typography variant="h6">Round: {roundCounter}</Typography></Box>
