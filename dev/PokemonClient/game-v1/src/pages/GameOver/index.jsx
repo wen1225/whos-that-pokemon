@@ -12,21 +12,14 @@ function GameOver() {
   }, 5000);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="logo" />
-        <p>
-          Game Over Trainer.
-        </p>
-        <a
-          className="App-link"
-          href="https://github.com/wen1225/whos-that-pokemon"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Thank you for playing!
-        </a>
-      </header>
+    <div className="ending-page">
+      <h1 className="game-over-text">Game Over!</h1>
+      <p className="total-points-text">Total points: </p>
+      <p className="great-score-text">Great score! Another game?</p>
+      <div className="button-container">
+        <button className="home-button">Home</button>
+        <button className="play-again-button">Play Again</button>
+      </div>
     </div>
   );
 }
